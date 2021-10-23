@@ -7,12 +7,19 @@ public class TypingMechanic : MonoBehaviour
 {
     [SerializeField] private string[] Questions = {"ok", "hi","up","in"};
     //[SerializeField] private string[] middleQuestions = { "hello", "game" };
-    public Text displayQuestionText;
+   
     private int questionNumber;
     private string stringQuestion;
     private int indexOfString;  //how many number of string.
     private string correctString;
-    public Text UII;
+    private int correctN;
+    private int mistakeN;
+
+    private Text displayQuestionText;
+    private Text UII;
+    private Text UIcorrectA;
+    private Text mistakeNtext;
+    public Text tutorialText;
 
 
     // Start is called before the first frame update
@@ -21,17 +28,37 @@ public class TypingMechanic : MonoBehaviour
         //Finiding gameObject named questionText and inside the component get Text.
         displayQuestionText = GameObject.Find("QuestionText").GetComponent<Text>();
         UII = GameObject.Find("InputText").GetComponent<Text>();
+        UIcorrectA = GameObject.Find("CorrectAnswer").GetComponent<Text>();
+        mistakeNtext = GameObject.Find("MistakeAnswer").GetComponent<Text>();
+        
+
+        correctN = 0;
+        UIcorrectA.text = correctN.ToString();
+        mistakeN = 0;
+        mistakeNtext.text = mistakeN.ToString();
+
         DisplayQuestion();
     }
+
+  
+
 
     // Update is called once per frame
     void Update()
     {
-
         Typing();
-
-       
+        StartCoroutine("Fade");
     }
+
+    IEnumerator Fade()
+    {
+       
+        yield return new WaitForSeconds(3.0f);
+        // tutorialText.gameObject.SetActive(false);
+        tutorialText.text = "";
+    }
+
+
 
     public void Typing()
     {
@@ -59,7 +86,10 @@ public class TypingMechanic : MonoBehaviour
             }
             else
             {
+                //you will die here. Try again text come! Restart from the beginning.  
                 Wrong();
+                correctN--;
+                UIcorrectA.text = correctN.ToString();
             }
            
         }
@@ -81,6 +111,9 @@ public class TypingMechanic : MonoBehaviour
 
     void Correct()
     {
+        correctN++;
+        UIcorrectA.text = correctN.ToString();
+        CorrectRate();
         //　正解した文字を表示
         correctString += stringQuestion[indexOfString].ToString();
         UII.text = correctString;
@@ -89,6 +122,12 @@ public class TypingMechanic : MonoBehaviour
     }
     void Wrong()
     {
-        Debug.Log("Wrong");
+        mistakeN++;
+        mistakeNtext.text = mistakeN.ToString();
+    }
+
+    void CorrectRate()
+    {
+        Debug.Log("Accuracy rate will be calculated");
     }
 }
