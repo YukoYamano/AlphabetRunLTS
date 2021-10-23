@@ -2303,6 +2303,7 @@ GameObject:
   - component: {fileID: 652464922}
   - component: {fileID: 652464923}
   - component: {fileID: 652464924}
+  - component: {fileID: 652464925}
   m_Layer: 8
   m_Name: Box1
   m_TagString: Untagged
@@ -2401,6 +2402,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2521694, y: 0.6452509}
   m_EdgeRadius: 0
+--- !u!114 &652464925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652464921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410ed7d11135b3a4fbf2db9c94394918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Questions:
+  - ok
+  - hi
+  - up
+  - game
+  - hello
+  - run
+  - me
+  - you
+  - love
+  - cute
+  displayQuestionText: {fileID: 450404934}
 --- !u!1 &654495666
 GameObject:
   m_ObjectHideFlags: 0
@@ -4092,7 +4117,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1796618695}
-  - component: {fileID: 1796618696}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -4114,24 +4138,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1796618696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796618694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 410ed7d11135b3a4fbf2db9c94394918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Questions:
-  - ok
-  - hi
-  - up
-  - in
-  displayQuestionText: {fileID: 450404934}
 --- !u!1 &1837974520
 GameObject:
   m_ObjectHideFlags: 0

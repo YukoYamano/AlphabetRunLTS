@@ -12,6 +12,7 @@ public class TypingMechanic : MonoBehaviour
     private string stringQuestion;
     private int indexOfString;  //how many number of string.
     private string correctString;
+    public Text UII;
 
 
     // Start is called before the first frame update
@@ -19,48 +20,75 @@ public class TypingMechanic : MonoBehaviour
     {
         //Finiding gameObject named questionText and inside the component get Text.
         displayQuestionText = GameObject.Find("QuestionText").GetComponent<Text>();
-        displayQuestion();
+        UII = GameObject.Find("InputText").GetComponent<Text>();
+        DisplayQuestion();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        //checking the firstletter
-        if (Input.GetKeyDown(stringQuestion[indexOfString].ToString()))
-        {     
-            Debug.Log(stringQuestion[indexOfString].ToString());
-            indexOfString++;
-        }
-           
-        if (indexOfString >= stringQuestion.Length)
-         {
-            //display other question
-           displayQuestion();
-         }
-        else if (Input.anyKeyDown)
-        {
-            Wrong();
-        }
-      
-        
-       
+
+        Typing();
 
        
     }
 
-    private void displayQuestion()
+    public void Typing()
+    {
+        //checking the firstletter
+        if (Input.GetKeyDown(stringQuestion[indexOfString].ToString()))
+        {
+            Correct();
+           // Debug.Log(stringQuestion[indexOfString].ToString());
+           // indexOfString++;
+
+
+            if (indexOfString >= stringQuestion.Length)
+            {
+                //display other question
+                DisplayQuestion();
+                //Enable question text
+                Debug.Log("Pass");
+            }
+
+        }else if (Input.anyKeyDown)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("Spacekey igonered");
+            }
+            else
+            {
+                Wrong();
+            }
+           
+        }
+   
+        
+    }
+
+    private void DisplayQuestion()
     {
         displayQuestionText.text = "";
+        UII.text = "";
+        correctString = "";
+
         indexOfString = 0;
         questionNumber = Random.Range(0, Questions.Length);  //get random number through 0~3
         stringQuestion = Questions[questionNumber];   // 0~3  = 4questions
         displayQuestionText.text = stringQuestion;
     }
 
-
+    void Correct()
+    {
+        //　正解した文字を表示
+        correctString += stringQuestion[indexOfString].ToString();
+        UII.text = correctString;
+        //　次の文字を指す
+        indexOfString++;
+    }
     void Wrong()
     {
-        //Debug.Log("Wrong");
+        Debug.Log("Wrong");
     }
 }
