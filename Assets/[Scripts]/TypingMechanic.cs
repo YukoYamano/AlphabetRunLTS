@@ -25,7 +25,7 @@ public class TypingMechanic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Finiding gameObject named questionText and inside the component get Text.
+        //Finiding gameObject so that I don't have to drog and drop
         displayQuestionText = GameObject.Find("QuestionText").GetComponent<Text>();
         UII = GameObject.Find("InputText").GetComponent<Text>();
         UIcorrectA = GameObject.Find("CorrectAnswer").GetComponent<Text>();
@@ -113,7 +113,7 @@ public class TypingMechanic : MonoBehaviour
     {
         correctN++;
         UIcorrectA.text = correctN.ToString();
-        CorrectRate();
+        //CorrectRate();
         //　正解した文字を表示
         correctString += stringQuestion[indexOfString].ToString();
         UII.text = correctString;
@@ -128,6 +128,7 @@ public class TypingMechanic : MonoBehaviour
 
     void CorrectRate()
     {
-        Debug.Log("Accuracy rate will be calculated");
+       // future feature 
+       //Debug.Log("correctRate display");
     }
 }

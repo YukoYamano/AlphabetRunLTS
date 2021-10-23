@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
     public float speed = 2.0f;
     public float jumpForce = 5.0f;
     public Text winText;
-    public Text loseText;
+    public Text loselastText;
     public Text CorrectAnswer;
-   
+    public Button restartButton;
 
     // Start is called before the first frame update
     void Start()
@@ -90,8 +90,9 @@ public class PlayerController : MonoBehaviour
             else
             {
                 isLose = true;
-                loseText.gameObject.SetActive(true);
-                //anim.SetBool("isLose",true);
+                loselastText.gameObject.SetActive(true);
+                restartButton.gameObject.SetActive(true);
+                anim.SetBool("isDead",isLose);
             }
 
 
