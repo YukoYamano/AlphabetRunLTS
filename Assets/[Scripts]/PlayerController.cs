@@ -8,11 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rBody;
     private Animator anim;
 
-
+    [SerializeField]
     private bool isGround = false;
-    private bool isWin = false;
-    private bool isLose = false;
-
     [SerializeField]
     private float groundCheckRadius = 0.15f;
     [SerializeField]
@@ -22,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int targetScore = 100;
 
+    public bool isLose = false;
+    public bool isWin = false;
     public float speed = 2.0f;
     public float jumpForce = 5.0f;
     public Text winText;
@@ -35,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         rBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-      
+     
     }
 
     // Update is called once per frame
@@ -54,23 +53,29 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         anim.SetBool("isGrounded", isGround);
+
+        isGround = GroundCheck();
         
+        if (isGround)
+        {
+            dirtParticle.Play();
+        }
+        if(isLose == true)
+        {
+            dirtParticle.Stop();
+        }
 
         if (isGround && Input.GetKeyDown(KeyCode.Space))
         {
             //Debug.Log(rBody.velocity.y);
-          
+       
             rBody.velocity = new Vector2(rBody.velocity.x, jumpForce);
             
             isGround = false;
             anim.SetBool("isGrounded", isGround);
         }
 
-        if (isGround)
-        {
-
-            dirtParticle.Play();
-        }
+     
 
     }
 
@@ -102,10 +107,6 @@ public class PlayerController : MonoBehaviour
                 restartButton.gameObject.SetActive(true);
                 anim.SetBool("isDead",isLose);
             }
-
-
-
-            
 
 
         }

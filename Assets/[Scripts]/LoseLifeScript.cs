@@ -9,12 +9,14 @@ public class LoseLifeScript : MonoBehaviour
    // public Transform spawnPoint;
     public Text loseText;
     private Animator anim;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
        // loseText = GameObject.Find("loseText").GetComponent<Text>();
         anim = GameObject.Find("Player").GetComponent<Animator>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -31,8 +33,8 @@ public class LoseLifeScript : MonoBehaviour
             //Lose condition
             //Time.timeScale = 0.0f;
             loseText.gameObject.SetActive(true);
-
             anim.SetBool("isDead", true);
+            player.GetComponent<PlayerController>().isLose = true;
             StartCoroutine("Restart");
           
         }
