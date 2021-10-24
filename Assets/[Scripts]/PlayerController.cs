@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public Text loselastText;
     public Text CorrectAnswer;
     public Button restartButton;
+    public ParticleSystem dirtParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -58,10 +59,17 @@ public class PlayerController : MonoBehaviour
         if (isGround && Input.GetKeyDown(KeyCode.Space))
         {
             //Debug.Log(rBody.velocity.y);
+          
             rBody.velocity = new Vector2(rBody.velocity.x, jumpForce);
             
             isGround = false;
             anim.SetBool("isGrounded", isGround);
+        }
+
+        if (isGround)
+        {
+
+            dirtParticle.Play();
         }
 
     }

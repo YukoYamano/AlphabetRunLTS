@@ -21,6 +21,9 @@ public class TypingMechanic : MonoBehaviour
     private Text mistakeNtext;
     public Text tutorialText;
 
+    
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -80,9 +83,10 @@ public class TypingMechanic : MonoBehaviour
 
         }else if (Input.anyKeyDown)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("Spacekey igonered");
+            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0)))
+             {
+           
+                Debug.Log("Space key and mouse button igonered");
             }
             else
             {
@@ -124,6 +128,7 @@ public class TypingMechanic : MonoBehaviour
     {
         mistakeN++;
         mistakeNtext.text = mistakeN.ToString();
+        
     }
 
     void CorrectRate()
